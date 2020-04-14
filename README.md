@@ -9,11 +9,11 @@ de robots par une interface graphique. Nous possédons pour cela 4 robots : Pepp
 
 ## Projet
 
-Vous retrouverai sur notre GitHub l'ensemble du code utilisé à la fois pour la partie application Java mais aussi 
-la partie Python a executer sur les robots pour pouvoir avoir l'interaction entre eux et le serveur.
+Vous retrouverez sur notre GitHub l'ensemble du code utilisé à la fois pour la partie application Java mais aussi 
+la partie Python à executer sur les robots pour pouvoir avoir l'interaction entre eux et le serveur.
 En fin une autre partie HTML et CSS regroupe l'ensemble de notre code pour pouvoir faire le site web de notre projet.
 
 ## Site Web
 
-Vous pouvez retrouvez plus d'informations et de détails sur le site web de notre projet donc voici le lien :
+Vous pouvez retrouver plus d'informations et de détails sur le site web de notre projet donc voici le lien :
 /inserer lien du site/
