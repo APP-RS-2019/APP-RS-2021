@@ -9,7 +9,8 @@ Lancer le main du src, un message doit s'afficher côté serveur et côté main 
 Envoyer des ordres depuis l'appli, l'affichage de l'action correspondante devrais se faire dans la console côté src 
 
 Pour utiliser le Robotino réel, remplacer le contenu des méthodes correspondant à des actions dans src/Robot. Les prints deviennent des 
-appels aux méthodes permettant d'activer le moteurs (OmniDrive pour Robotino). Integrer src dans le robot et lancer le main après l'avoir
-compilé (avec Putty).
+appels aux méthodes permettant d'activer le moteurs (OmniDrive pour Robotino). Des exemples de méthodes sont disponibles dans Robot.java 
+(ne pas faire attention aux lignes concernent la connexion au serveur c'est une ancienne version).Integrer src dans le robot et lancer le 
+main après l'avoir compilé (avec Putty).
 
 Pas oublier de changer les informations du serveur dans la méthode run de src/Robot selon le serveur auquel vous vous connectez.
