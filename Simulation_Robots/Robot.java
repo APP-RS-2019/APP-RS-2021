@@ -1,0 +1,183 @@
+import rec.robotino.com.Bumper;
+import rec.robotino.com.Com;
+import rec.robotino.com.Motor;
+import rec.robotino.com.OmniDrive;
+
+import static java.lang.Math.*;
+
+import java.util.*;
+
+
+
+public class Robot implements Runnable
+{
+	protected final String hostname;
+	protected final Scanner sc;
+	protected final Com com;
+	protected final Motor motor1;
+	protected final Motor motor2;
+	protected final Motor motor3;
+	protected final OmniDrive omniDrive;
+	protected final Bumper bumper;
+	protected final float[] startVector = new float[]
+			{
+			200.0f, 0.0f
+			};
+
+	public Robot(String hostname)
+	{
+		this.hostname = hostname;
+		com = new Com();
+		motor1 = new Motor();
+		motor2 = new Motor();
+		motor3 = new Motor();
+		omniDrive = new OmniDrive();
+		bumper = new Bumper();
+		sc = new Scanner(System.in);
+	}
+
+	public void run()
+	{
+		System.out.println("Robot started.");
+
+		try
+		{
+			System.out.println("Initializing...");
+			init();
+			System.out.println("Connecting...");
+			connect(hostname);
+			System.out.println("Connected.");
+			System.out.println("Driving...");
+
+			String bo="";
+			boolean te=true;
+			try {
+				ClientSocket test=new ClientSocket("193.48.125.71",1933,"Robotino");
+				while (te){
+					bo = test.reciev();
+					System.out.println(bo);
+
+					if (bo.equals("finr")){
+						te = false;
+					}
+					if(bo.equals("a")){
+						avance();
+					}
+				}
+				System.out.println("cc exit");
+				test.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			disconnect();
+		}
+
+		System.out.println("Done.");
+	}
+
+	protected void init()
+	{
+		motor1.setComId(com.id());
+		motor1.setMotorNumber(0);
+
+		motor2.setComId(com.id());
+		motor2.setMotorNumber(1);
+
+		motor3.setComId(com.id());
+		motor3.setMotorNumber(2);
+
+		omniDrive.setComId(com.id());
+
+		bumper.setComId(com.id());
+
+	}
+
+	protected void connect(String hostname)
+	{
+		com.setAddress(hostname);
+		com.connect();
+	}
+
+	protected void disconnect()
+	{
+		com.disconnect();
+	}
+
+	protected void drive() throws InterruptedException
+	{
+		float[] dir;
+		float a = 0.0f;
+		long startTime = System.currentTimeMillis();
+		int millisecondsElapsed = 0;
+
+		while (!Thread.interrupted() && com.isConnected() && false == bumper.value())
+		{
+			long elapsedTime = System.currentTimeMillis() - startTime;
+
+			//rotate by 360 degrees every 10 seconds
+			dir = rotate(startVector, a);
+			a = 360.0f * elapsedTime / 10000;
+
+			omniDrive.setVelocity(dir[0], dir[1], 0);
+
+			com.waitForUpdate();
+		}
+	}
+
+	/**
+	 * Rotate a 2 dimensional vector
+	 * 
+	 * @param in Input vector
+	 * @param deg Rotation in degrees
+	 * @return Output vector
+	 */
+	private float[] rotate(float[] in, float deg)
+	{
+		final float pi = 3.14159265358979f;
+
+		float rad = 2 * pi / 360.0f * deg;
+
+		float[] out = new float[2];
+		out[0] = (float) (cos(rad) * in[0] - sin(rad) * in[1]);
+		out[1] = (float) (sin(rad) * in[0] + cos(rad) * in[1]);
+		return out;
+	}
+
+
+	protected void avance() throws InterruptedException
+	{
+		while (!Thread.interrupted() && com.isConnected() && false == bumper.value())
+		{
+			System.out.println("avanceCopainstp");
+			omniDrive.setVelocity(100, 0, 0);
+			com.waitForUpdate();
+		}
+	}
+
+protected void tourne2(double nombre, boolean sens) throws InterruptedException // nombre = Nombre de quarts de tour
+    {
+        long startTime = System.currentTimeMillis();
+        long elapsedTime = 0;
+
+        while (!Thread.interrupted() && com.isConnected() && false == bumper.value() && elapsedTime<nombre*1750 )
+        {
+			elapsedTime = System.currentTimeMillis() - startTime;
+			if(sens){ //Vers la gauche = trigo
+				omniDrive.setVelocity(10, 0, 60);
+			}
+			else{
+				omniDrive.setVelocity(10, 0, -60);
+			}
+        }
+        Thread.sleep(50);   // pause
+        omniDrive.setVelocity(0, 0, 0); // stop 
+    }
+}
