@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Apr 23 11:39:41 2019
-@author: beaurezm
+@author: jehan/clement
 """
 
 import socket
