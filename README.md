@@ -14,7 +14,7 @@ la partie Python à executer sur les robots pour pouvoir avoir l'interaction ent
 En fin une autre partie HTML, CSS et JavaScript regroupe l'ensemble de notre code pour pouvoir faire le site web de notre projet.
 L'image ci-dessous représente l'architecture global de notre projet :
 
-![alt text](http://url/to/img.png)
+![Architecture](APP-RS-2021/Illustrations_doc/Architecture.PNG )
 
 ## Application Java
 
