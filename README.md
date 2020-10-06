@@ -1,6 +1,6 @@
 # APP-RS-2021
 
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  [![forthebadge](http://forthebadge.com/images/badges/powered-by-electricity.svg)](http://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://github.com/APP-RS-2019/APP-RS-2021/tree/master/Serveur_Python)  [![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://github.com/APP-RS-2019/APP-RS-2021/tree/master/Application_Java) [![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](http://forthebadge.com)
 
 ## Contexte
 
