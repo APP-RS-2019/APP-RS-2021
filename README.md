@@ -1,5 +1,7 @@
 # APP-RS-2021
 
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  [![forthebadge](http://forthebadge.com/images/badges/powered-by-electricity.svg)](http://forthebadge.com)
+
 ## Contexte
 
 Nous somme une équipe de 5 élèves ingénieurs de Polytech Annecy de la section IAI (Instrumentation Automatisme et Informatique)
@@ -17,6 +19,9 @@ L'image ci-dessous représente l'architecture global de notre projet :
 ![Architecture](/Illustrations_doc/Architecture.PNG)
 
 ## Application Java
+
+Le but de l'application Java est de permettre à l'utilisateur de pouvoir interagir avec la flotte de robot à travers une interface facile d'utilisation.
+Pour plus d'information concernant le fonctionnement de l'application Java, vous retrouverez la documentation détaillée et le code source ici :
 
 ## Serveur
 
