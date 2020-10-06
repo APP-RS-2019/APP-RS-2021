@@ -21,7 +21,7 @@ L'image ci-dessous représente l'architecture global de notre projet :
 ## Application Java
 
 Le but de l'application Java est de permettre à l'utilisateur de pouvoir interagir avec la flotte de robot à travers une interface facile d'utilisation.
-Pour plus d'information concernant le fonctionnement de l'application Java, vous retrouverez la documentation détaillée et le code source [ici](hhttps://github.com/APP-RS-2019/APP-RS-2021/tree/master/Application_Java) :
+Pour plus d'information concernant le fonctionnement de l'application Java, vous retrouverez la documentation détaillée et le code source [ici](https://github.com/APP-RS-2019/APP-RS-2021/tree/master/Application_Java) :
 
 ## Serveur
 
