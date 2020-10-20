@@ -2,7 +2,6 @@
 
 Pour la construction de ce site web, nous avons décidé de créer différentes rubriques afin de présenter
 notre projet (matériel, contrainte...) et de détailler notre avancée. Nous avons laissé une partie
-
 commune à toutes les pages regroupant le logo de Polytech et le menu du site. Ainsi, sur chaque page
 nous avons tous les liens vers les autres pages.
 Les différentes rubriques présentes sur le site sont les suivantes :
