@@ -2,6 +2,6 @@
 
 # Architecture
 
-![Architecture](/Application_Java/Illustrations_doc/Architecture.JPEG)
+![Architecture](/Illustrations_doc/Architecture.jpg)
 
 # 
