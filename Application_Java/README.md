@@ -16,3 +16,30 @@ attributs.
 
 ![Diagramme UML](/Application_Java/Illustrations_doc/interface1.png)
 ![Diagramme UML](/Application_Java/Illustrations_doc/interface2.png)
+
+# Améliorations possibles
+
+Les améliorations qui peuvent être apportées au projet sont les suivantes :
+- Uniformisation des ordres pour chaque robot. Les ordres ne découlent pas des mêmes
+méthodes et il serait intéressant d’optimiser le programme pour qu’un même ordre donné
+pour chaque robot implique la même réponse(actuellement, il existe plusieurs méthodes
+“avancer” pour chacun des robots disponibles).
+- Adaptabilité du projet (documentation + package) : Nous n’avons pas réalisé de
+documentation concernant l’utilisation de notre application, il serait intéressant d’en écrire
+une dans le cas ou des personnes viendrait à reprendre notre projet. De plus elle pourrait
+être incluse sur le GitHub. Il pourrait aussi être utile de packager le projet, à l’aide de PIP ou
+autre. Couplé à la documentation, ceci permettrait à quelqu’un qui veut juste utiliser le
+projet avec ses propres robots de le faire facilement.
+- Meilleure gestion du temps sur les scénarios : actuellement, les scénarios permettent de
+donner une suite d’actions à faire à un robot, espacées de différentes durées. Cependant
+nous n’avons pas géré la durée des actions en question. Ainsi, si une action doit être lancée
+avant que la précédente soit terminée, elle sera retardée jusqu’à ce que l’action précédente
+finisse.
+- Amélioration des possibilités de l’application: N’ayant pas pu réaliser de tests avec les vrais
+robots, certains bugs n’ont probablement pas été décelés. De plus, d’autres fonctionnalités
+
+pourraient être intéressante à mettre en place, en utilisant mieux les capteurs des différents
+robots et en incluant un retour des robots vers l’application.
+- Affichage du déplacement des robots : Il faudrait ajouter à l’application une fenêtre
+représentant les robots sur un plan vu de dessus. On pourrait ainsi suivre leur déplacements
+et actions au cours du temps.
