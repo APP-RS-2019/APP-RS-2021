@@ -41,11 +41,11 @@ public class Test {
 		while(menuPrincipal){
 			//Menu Principal
 			System.out.println("Quelle Action souhaitez-vous faire ?\n");
-			System.out.println("1 - Charger un système");
-			System.out.println("2 - Sauvegarder le système");
+			System.out.println("1 - Charger un systÃ¨me");
+			System.out.println("2 - Sauvegarder le systÃ¨me");
 			System.out.println("3 - Mode manuel");
-			System.out.println("4 - Gérer les flottes");
-			System.out.println("5 - Mode scénario");
+			System.out.println("4 - GÃ©rer les flottes");
+			System.out.println("5 - Mode scÃ©nario");
 			System.out.println("6 - Quitter le logiciel\n");
 
 			String demandeMenuPrincipal = sc.nextLine();
@@ -53,15 +53,15 @@ public class Test {
 			switch(demandeMenuPrincipal){
 
 			case "1":
-				System.out.println("A partir de quel chemin de fichier souhaitez-vous charger les données ?");
+				System.out.println("A partir de quel chemin de fichier souhaitez-vous charger les donnÃ©es ?");
 				System.out.println("Exemple : C:\\Users\\jacqu/Desktop/APP/save/save.txt\n");
 				String cheminFichierChargement = sc.nextLine();
 				try {
 					syst.update(cheminFichierChargement);
-					System.out.println("Fichier chargé avec succès\n");
+					System.out.println("Fichier chargÃ© avec succÃ¨s\n");
 				}
 				catch(Exception FileNotFoundException) {
-					System.err.println("Le fichier demandé est introuvable");
+					System.err.println("Le fichier demandÃ© est introuvable");
 				}
 				break;
 
@@ -71,10 +71,10 @@ public class Test {
 				String cheminFichierEnregistrement = sc.nextLine();
 				try {
 					syst.save(cheminFichierEnregistrement);
-					System.out.println("Fichier enregistré avec succès\n");
+					System.out.println("Fichier enregistrÃ© avec succÃ¨s\n");
 				}
 				catch(Exception FileNotFoundException) {
-					System.err.println("Accès refusé");
+					System.err.println("AccÃ¨s refusÃ©");
 				}
 				break;
 
@@ -92,7 +92,7 @@ public class Test {
 					case "1":
 						System.out.println("IP du serveur\n");
 						String iPserveur = sc.nextLine();
-						System.out.println("Numéro de port\n");
+						System.out.println("NumÃ©ro de port\n");
 						String nbPort = sc.nextLine();
 						System.out.println("Tentative de connexion...\n");
 						try{
@@ -100,14 +100,14 @@ public class Test {
 							System.out.println("Etat du serveur : + " + server.isOpen() + "\n");
 						}
 						catch(Exception ConnectException) {
-							System.err.println("Connection au serveur échouée\n");
+							System.err.println("Connection au serveur Ã©chouÃ©e\n");
 						}
 						break;
 
 					case "2":
 						System.out.println("IP du serveur\n");
 						iPserveur = sc.nextLine();
-						System.out.println("Numéro de port\n");
+						System.out.println("NumÃ©ro de port\n");
 						nbPort = sc.nextLine();
 
 						System.out.println("Quel est IP du robot dont vous souhaitez prendre le controle ?\n");
@@ -123,7 +123,7 @@ public class Test {
 							server.sendOrder(iPRobotModeManuel, actionModeManuel);
 						}
 						catch(Exception ConnectException) {
-							System.err.println("Connection au serveur échouée\n");
+							System.err.println("Connection au serveur Ã©chouÃ©e\n");
 						}
 
 						break;
@@ -133,7 +133,7 @@ public class Test {
 						break;
 
 					default:
-						System.out.println("La demande est incohérente, veuillez respecter les régles de demande\n");
+						System.out.println("La demande est incohÃ©rente, veuillez respecter les rÃ©gles de demande\n");
 						break;
 					};
 				}
@@ -141,15 +141,15 @@ public class Test {
 
 			case "4":
 				System.out.println("Que souhaitez-vous faire ?\n");
-				System.out.println("1 - Créer une flotte");
+				System.out.println("1 - CrÃ©er une flotte");
 				System.out.println("2 - Supprimer une flotte");
 				System.out.println("3 - Afficher les flottes existantes");
-				System.out.println("4 - Sélectionner une flotte\n");
+				System.out.println("4 - SÃ©lectionner une flotte\n");
 				String demandeFlotte = sc.nextLine();
 
 				switch(demandeFlotte){
 				case "1":
-					System.out.println("Nom de la flotte à créer?\n");
+					System.out.println("Nom de la flotte Ã  crÃ©er?\n");
 					String nomAjoutFlotte = sc.nextLine();
 					int max = 0;
 					for (Fleet fleetAjout : Syst.getFleets() ) {
@@ -163,7 +163,7 @@ public class Test {
 					break;
 
 				case "2":
-					System.out.println("Nom de la flotte à supprimer?\n");
+					System.out.println("Nom de la flotte Ã  supprimer?\n");
 					System.out.println("Flottes existantes :\n");
 					for (Fleet FleetAffiche : Syst.getFleets() ) {
 						System.out.println(FleetAffiche.getName());
@@ -205,7 +205,7 @@ public class Test {
 						System.out.println("1 - Ajouter un robot dans la flotte");
 						System.out.println("2 - Supprimer un robot de la flotte");
 						System.out.println("3 - Afficher les robots de la flotte");
-						System.out.println("4 - Sélectionner un robot\n");
+						System.out.println("4 - SÃ©lectionner un robot\n");
 						String selectionFlotte = sc.nextLine();
 
 						switch(selectionFlotte){
@@ -246,7 +246,7 @@ public class Test {
 							case "Peekee1R":
 								for (Fleet FleetRecherche : Syst.getFleets() ) {
 									if(FleetRecherche.getName().contentEquals(nomSelectionFlotte)) {
-										Peekee1R Peekee1R = new Peekee1R(iPRobot, nomRobot);
+										Pekee1R Peekee1R = new Pekee1R(iPRobot, nomRobot);
 										FleetRecherche.addRobot(Peekee1R);
 									}
 								}
@@ -255,7 +255,7 @@ public class Test {
 							break;
 
 						case "2":
-							System.out.println("Nom du robot à supprimer?\n");
+							System.out.println("Nom du robot Ã  supprimer?\n");
 							System.out.println("Robots de la flotte :\n");
 							for (Fleet fleetAffiche : Syst.getFleets()) {
 								if(fleetAffiche.getName().equals(nomSelectionFlotte)){
@@ -317,15 +317,15 @@ public class Test {
 								System.out.println("2 - Supprimer une action au robot");
 								System.out.println("3 - Ajouter un capteur au robot");
 								System.out.println("4 - Supprimer un capteur au robot");
-								System.out.println("5 - Sélectionner une action");
-								System.out.println("6 - Sélectionner un capteur");
+								System.out.println("5 - SÃ©lectionner une action");
+								System.out.println("6 - SÃ©lectionner un capteur");
 								System.out.println("7 - Afficher l'ensemble des capteurs du robot");
 								System.out.println("8 - Afficher l'ensemble des action du robot\n");
 								String selectionRobot = sc.nextLine();
 
 								switch(selectionRobot){
 								case "1":
-									System.out.println("Nom de l'action à ajouter?\n");
+									System.out.println("Nom de l'action Ã  ajouter?\n");
 									String nomAjoutAction = sc.nextLine();
 									for (Fleet fleetR : Syst.getFleets() ) {
 										if(fleetR.equals(nomSelectionFlotte)){
@@ -340,7 +340,7 @@ public class Test {
 									break;
 
 								case "2":
-									System.out.println("Nom de l'action à supprimer?\n");
+									System.out.println("Nom de l'action Ã  supprimer?\n");
 									System.out.println("Ensemble des actions :\n");
 									for (Fleet fleetAffiche : Syst.getFleets()) {
 										if(fleetAffiche.getName().equals(nomSelectionFlotte)){
@@ -371,7 +371,7 @@ public class Test {
 									break;
 
 								case "3":
-									System.out.println("Nom du capteur à ajouter?\n");
+									System.out.println("Nom du capteur Ã  ajouter?\n");
 									String nomAjoutCapteur = sc.nextLine();
 									for (Fleet fleetR : Syst.getFleets() ) {
 										if(fleetR.equals(nomSelectionFlotte)){
@@ -386,7 +386,7 @@ public class Test {
 									break;
 
 								case "4":
-									System.out.println("Nom du capteur à supprimer?\n");
+									System.out.println("Nom du capteur Ã  supprimer?\n");
 									System.out.println("Ensemble des capteurs :\n");
 									for (Fleet fleetAffiche : Syst.getFleets()) {
 										if(fleetAffiche.getName().equals(nomSelectionFlotte)){
@@ -519,19 +519,19 @@ public class Test {
 									break;
 
 								default:
-									System.out.println("La demande est incohérente, veuillez respecter les régles de demande\n");
+									System.out.println("La demande est incohÃ©rente, veuillez respecter les rÃ©gles de demande\n");
 									break;
 								}}else {System.err.println("Ce robot n'existe pas");}
 							break;
 
 						default:
-							System.out.println("La demande est incohérente, veuillez respecter les régles de demande\n");
+							System.out.println("La demande est incohÃ©rente, veuillez respecter les rÃ©gles de demande\n");
 							break;
 						}}else {System.err.println("Cette flotte n'existe pas");}
 					break;
 
 				default:
-					System.out.println("La demande est incohérente, veuillez respecter les régles de demande\n");
+					System.out.println("La demande est incohÃ©rente, veuillez respecter les rÃ©gles de demande\n");
 					break;
 				}
 				break;
@@ -539,11 +539,11 @@ public class Test {
 			case "5":
 				menuModeScenario = true;
 				while(menuModeScenario){
-					System.out.println("Mode scénario");
+					System.out.println("Mode scÃ©nario");
 					System.out.println("Que souhaitez-vous faire ?\n");
-					System.out.println("1 - Ajouter une action au scénario");
-					System.out.println("2 - Effectuer le scénario en mode simulation");
-					System.out.println("3 - Effectuer le scénario en mode déploiment");
+					System.out.println("1 - Ajouter une action au scÃ©nario");
+					System.out.println("2 - Effectuer le scÃ©nario en mode simulation");
+					System.out.println("3 - Effectuer le scÃ©nario en mode dÃ©ploiment");
 					System.out.println("4 - Revenir au menu principal\n");
 					String demandeModeScenario = sc.nextLine();
 
@@ -605,7 +605,7 @@ public class Test {
 						break;
 
 					default:
-						System.out.println("La demande est incohérente, veuillez respecter les régles de demande\n");
+						System.out.println("La demande est incohÃ©rente, veuillez respecter les rÃ©gles de demande\n");
 						break;
 					}
 				}
@@ -616,7 +616,7 @@ public class Test {
 				break;
 
 			default:
-				System.out.println("La demande est incohérente, veuillez respecter les régles de demande\n");
+				System.out.println("La demande est incohÃ©rente, veuillez respecter les rÃ©gles de demande\n");
 				break;
 			}
 		}
