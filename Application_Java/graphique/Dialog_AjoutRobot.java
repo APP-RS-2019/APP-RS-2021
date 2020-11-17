@@ -138,13 +138,13 @@ public class Dialog_AjoutRobot extends JDialog implements AL{
 				dispose();
 			}
 			else if (comboBox.getSelectedItem().toString().equals("Pekee")) {
-				Peekee1R pekee=new Peekee1R(textId.getText(), textName.getText());
+				Pekee1R pekee=new Pekee1R(textId.getText(), textName.getText());
 				Syst.getFleets().get(flotteSelect).addRobot(pekee);;
 				modeleRobot.addRobot(pekee);
 				dispose();
 			}}
 			catch(Exception ArrayIndexOutOfBoundsException) {
-				new ErrorDialog("Pas de flotte sélectionnée");
+				new ErrorDialog("Pas de flotte sÃ©lectionnÃ©e");
 			}
 		}
 		if(e.getSource()==cancelButton) {
