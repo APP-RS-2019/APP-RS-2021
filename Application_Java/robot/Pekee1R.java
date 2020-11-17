@@ -2,11 +2,12 @@ package robot;
 import action.Action;
 
 public class Pekee1R extends Robot{
+	
 	public Pekee1R(String idRobot, String name){
 		super(idRobot, name);
 	}
 	
-	Pekee1R(String idRobot, String name, float posx, float posy, float angle){
+	public Pekee1R(String idRobot, String name, float posx, float posy, float angle){
 		super( idRobot,  name,  posx,  posy, angle);
 	}
 
@@ -19,3 +20,4 @@ public class Pekee1R extends Robot{
 	}
 	
 }
+
