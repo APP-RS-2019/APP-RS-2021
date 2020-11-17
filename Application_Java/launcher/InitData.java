@@ -169,11 +169,11 @@ public class InitData {
 		pepper.addAction(A76);
 		
 		Nao nao = new Nao("2", "Nao");
-		Peekee1R peekee1R = new Peekee1R("3","Peekee1R");
+		Pekee1R peekee1R = new Pekee1R("3","Peekee1R");
 		Robotino robotino = new Robotino("4","Robotino");
 		
 		Fleet fleet = new Fleet("1");
-		fleet.setName("Flotte de données d'initialisations");
+		fleet.setName("Flotte de donnÃ©es d'initialisations");
 		fleet.addRobot(pepper);
 		fleet.addRobot(nao);
 		fleet.addRobot(peekee1R);
