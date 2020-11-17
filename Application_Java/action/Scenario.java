@@ -49,7 +49,7 @@ public class Scenario {
 	
 	public void execute()  {
 		Iterator<ActionToDo> i = this.data.iterator();
-		System.out.println("Début du scénario avec " + this.data.size() + " d'actions\n");
+		System.out.println("DÃ©but du scÃ©nario avec " + this.data.size() + " d'actions\n");
 		long time = 0;
 		while (i.hasNext()) {
 			ActionToDo action = i.next();
@@ -63,27 +63,6 @@ public class Scenario {
 			}
 			action.process();
 		}
-		System.out.println("Fin du scénario\n");
+		System.out.println("Fin du scÃ©nario\n");
 	}
-	
-	/*public void execute() throws InterruptedException {
-		Iterator<ActionToDo> i = this.data.iterator();
-		System.out.println("Début du scénario avec " + this.data.size() + " d'actions");
-		this.maxTime();
-		while (i.hasNext()) {
-			ActionToDo action = i.next();
-			
-			if(!action.isAlive()) {
-				action.start();
-			}
-			
-			this.activation(action);
-			
-			Thread.sleep(maxT*1000+1000);
-			
-			this.desactivation(action);
-
-			System.out.println("Fin du scénario");
-		}
-	}*/
 }
