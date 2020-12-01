@@ -11,9 +11,13 @@ L'ouvrir avec WinRar (ou autre explorateur de fichier) permet de récuperer tous
 ## PIP
 
 Taper dans Anaconda Prompt :
+
 pip install -i https://test.pypi.org/simple/ example-pkg-Anthoicl
+
 (Sinon ça : python -m pip install --index-url https://test.pypi.org/simple/ --no-deps example-pkg-Anthoicl)
+
 Puis : 
+
 python
 import example_pkg
 
