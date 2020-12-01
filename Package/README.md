@@ -19,6 +19,7 @@ pip install -i https://test.pypi.org/simple/ example-pkg-Anthoicl
 Puis : 
 
 python
+
 import example_pkg
 
 Vous devriez voir :
