@@ -12,15 +12,15 @@ L'ouvrir avec WinRar (ou autre explorateur de fichier) permet de récuperer tous
 
 Taper dans Anaconda Prompt :
 
-pip install -i https://test.pypi.org/simple/ example-pkg-Anthoicl
+pip install -i https://test.pypi.org/simple/ Serveur-pkg-APPRS2021
 
-(Sinon ça : python -m pip install --index-url https://test.pypi.org/simple/ --no-deps example-pkg-Anthoicl)
+(Sinon ça : python -m pip install --index-url https://test.pypi.org/simple/ --no-deps Serveur-pkg-APPRS2021)
 
 Puis : 
 
 python
 
-import example_pkg
+import Serveur
 
 Vous devriez voir :
 [SRV]:Le serveur tourne sur le port : 1933
