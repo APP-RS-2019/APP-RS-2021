@@ -27,7 +27,7 @@ Vous devriez voir :
 
 après avoir renseigné le port vous aurez: 
 
-[SRV]:Le serveur tourne sur le port : 1933\n
+[SRV]:Le serveur tourne sur le port : 1933
 [SRV]:Connexion en attente.
 [TX]:Vous pouvez envoyer des messages.
 [TX]:Veuillez entrer le destinataire
