@@ -23,7 +23,11 @@ python
 import Serveur
 
 Vous devriez voir :
-[SRV]:Le serveur tourne sur le port : 1933
+[INIT]Sur quel port voulez vous faire tourner le Serveur?
+
+après avoir renseigné le port vous aurez: 
+
+[SRV]:Le serveur tourne sur le port : 1933\n
 [SRV]:Connexion en attente.
 [TX]:Vous pouvez envoyer des messages.
 [TX]:Veuillez entrer le destinataire
