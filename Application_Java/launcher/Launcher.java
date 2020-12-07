@@ -12,7 +12,6 @@ public class Launcher {
 		try {
 			Setup.main(null);
 		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Test.main(null);
