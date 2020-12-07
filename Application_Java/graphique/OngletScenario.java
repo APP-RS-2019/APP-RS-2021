@@ -2,9 +2,11 @@ package graphique;
 
 import javax.swing.*;
 import action.Scenario;
+import eventModel.AL;
 import action.Action;
 import action.ActionToDo;
 import robot.Robot;
+import sensor.Sensor;
 import upperClass.Syst;
 import java.awt.event.*;
 import java.util.HashSet;
@@ -12,10 +14,11 @@ import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 import java.awt.Font;
 
-public class OngletScenario extends JPanel {
+public class OngletScenario extends JPanel  implements AL{
 	private JTable tableFlotte;
 	private JTable tableRobot;
 	private JTable tableAction;
+	private JTable tableScenario;
 
 	private ModeleDynamiqueFlotte modeleFlotte;
 	private ModeleDynamiqueRobot modeleRobot;
@@ -27,6 +30,15 @@ public class OngletScenario extends JPanel {
 	private CanvasSimulation canvasSimulation;
 	private Scenario scenario;
 	private JTextField txtTime;
+
+	private JButton raz = new JButton("RAZ");
+	private JButton btnCParti = new JButton("c parti");
+	private JButton btnFleetToRobot = new JButton("=>");
+	private JButton btnAjouter = new JButton("Ajouter");
+	private	JButton btnSupprimer = new JButton("Supprimer");
+	private JButton btnRobotToAction = new JButton("=>");
+	private JRadioButton simuler = new JRadioButton("Simuler");
+	private JRadioButton transmettre = new JRadioButton("Transmettre");
 
 	public OngletScenario() {
 		setLayout(null);
@@ -64,17 +76,18 @@ public class OngletScenario extends JPanel {
 
 		//canvaSimulation = new CanvasSimulation(scenario);
 
-		JButton btnCParti = new JButton("c parti");
-		btnCParti.setBounds(1362, 116, 91, 40);
+		btnCParti.setBounds(1362, 96, 91, 40);
 		add(btnCParti);
 
-		JRadioButton simuler = new JRadioButton("Simuler");
-		simuler.setSelected(true);//par défaut, on fait une simulation
+		raz.setBounds(1362, 156,91,40);
+		add(raz);
+
+		
+		simuler.setSelected(true);//par dÃ©faut, on fait une simulation
 		simuler.setBounds(1358, 208, 127, 25);
 		add(simuler);
 
 
-		JRadioButton transmettre = new JRadioButton("Transmettre");
 		transmettre.setBounds(1358, 238, 127, 25);
 		add(transmettre);
 		if (Syst.getClientsocket().isOpen()==false) {
@@ -84,21 +97,21 @@ public class OngletScenario extends JPanel {
 		ButtonGroup group = new ButtonGroup();
 		group.add(simuler);group.add(transmettre);
 
-		JButton btnFleetToRobot = new JButton("=>");
+
 		btnFleetToRobot.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnFleetToRobot.setBounds(423, 208, 50, 25);
 		add(btnFleetToRobot);
 
-		JButton btnRobotToAction = new JButton("=>");
+
 		btnRobotToAction.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnRobotToAction.setBounds(888, 208, 50, 25);
 		add(btnRobotToAction);
 
 
-		JButton btnAjouter = new JButton("Ajouter");
+		
 		btnAjouter.setBounds(1350, 400, 97, 25);
 		add(btnAjouter);
-		JButton btnSupprimer = new JButton("Supprimer");
+
 		btnSupprimer.setBounds(1350, 440, 97, 25);
 		add(btnSupprimer);
 
@@ -108,72 +121,88 @@ public class OngletScenario extends JPanel {
 		add(txtTime);
 		txtTime.setColumns(10);
 
-		JTable tableScenario=new JTable(modeleScenario);
+		tableScenario=new JTable(modeleScenario);
 		JScrollPane scrollPane_3 = new JScrollPane(tableScenario);
 		scrollPane_3.setBounds(1504, 10, 386, 460);
 		add(scrollPane_3);
+		
+		raz.addActionListener(this);
+		btnFleetToRobot.addActionListener(this);
+		btnRobotToAction.addActionListener(this);
+		btnRobotToAction.addActionListener(this);
+		btnCParti.addActionListener(this);
+		btnAjouter.addActionListener(this);
+		btnSupprimer.addActionListener(this);
+		
+	}
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==raz) {
+			modeleScenario.removeAll();
+			scenario.removeAll();
+			System.out.println(scenario.toString());
+			canvasSimulation.setTime(5);
+			canvasSimulation.repaint();
+		}
 
+		if(e.getSource()==btnFleetToRobot) {
+			if(tableFlotte.getSelectedRow()>-1) {
+				modeleRobot.removeAll();
+				HashSet<Robot> robs=Syst.getFleets().get(tableFlotte.getSelectedRow()).getRobots();
 
-		btnFleetToRobot.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(tableFlotte.getSelectedRow()>-1) {
-					modeleRobot.removeAll();
-					HashSet<Robot> robs=Syst.getFleets().get(tableFlotte.getSelectedRow()).getRobots();
-
-					flotteSelect=tableFlotte.getSelectedRow();
-					modeleRobot.initTable(robs);
-				}
+				flotteSelect=tableFlotte.getSelectedRow();
+				modeleRobot.initTable(robs);
 			}
-		});
-		btnRobotToAction.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(tableRobot.getSelectedRow()>-1) {
-					robotSelect=tableRobot.getSelectedRow();
-					modeleAction.removeAll();
-					HashSet<Robot> robs=Syst.getFleets().get(flotteSelect).getRobots();
-					Iterator<Robot> value = robs.iterator();
-					HashSet<Action> acts=new HashSet<Action>();
-					Robot temp;
-					for (int i=0;i<robotSelect+1;i++) {
-						temp=value.next();
-						acts=temp.getAction();
-					}
-					modeleAction.initTable(acts);
+		}
+		if(e.getSource()==btnRobotToAction) {
+			if(tableRobot.getSelectedRow()>-1) {
+				robotSelect=tableRobot.getSelectedRow();
+				modeleAction.removeAll();
+				HashSet<Robot> robs=Syst.getFleets().get(flotteSelect).getRobots();
+				Iterator<Robot> value = robs.iterator();
+				HashSet<Action> acts=new HashSet<Action>();
+				Robot temp;
+				for (int i=0;i<robotSelect+1;i++) {
+					temp=value.next();
+					acts=temp.getAction();
 				}
-				if (Syst.getClientsocket().isOpen()) {
-					transmettre.setEnabled(true);
-				}
+				modeleAction.initTable(acts);
 			}
+			if (Syst.getClientsocket().isOpen()) {
+				transmettre.setEnabled(true);
+			}
+		}
+		if(e.getSource()==btnCParti) {
+			if (simuler.isSelected()) {canvasSimulation.simulate();}
+			else if(transmettre.isSelected()) {canvasSimulation.transmettre();}
+		}
+		if(e.getSource()==btnAjouter) {
+			if(tableAction.getSelectedRow()>-1){
+				HashSet<Robot> robs=Syst.getFleets().get(flotteSelect).getRobots();
+				Iterator<Robot> valueRobots=robs.iterator();
+				Robot rob=null;
+				for(int i=0;i<robotSelect+1;i++) {
+					rob=valueRobots.next();
+				}
+				HashSet<Action> acts=rob.getAction();
+				Iterator<Action> valueAction=acts.iterator();
+				Action act=null;
+				for(int i=0;i<tableAction.getSelectedRow()+1;i++) {
+					act=valueAction.next();
+				}
+				ActionToDo actiontodo=new ActionToDo(rob.getName(), act.getNom(), Long.parseLong(txtTime.getText()));
+				scenario.addAction(actiontodo);
+				modeleScenario.addAction(actiontodo);
+				canvasSimulation.repaint();
+			}
+		}
+		if(e.getSource()==btnSupprimer) {
+			int a=tableScenario.getSelectedRow();
+			
+			modeleScenario.removeAction(a);
+			
+			scenario.remove(a);
+			canvasSimulation.repaint();
+		}
 
-		});
-		btnCParti.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if (simuler.isSelected()) {canvasSimulation.simulate();}
-				else if(transmettre.isSelected()) {canvasSimulation.transmettre();}
-			}
-		});
-		btnAjouter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(tableAction.getSelectedRow()>-1){
-					HashSet<Robot> robs=Syst.getFleets().get(flotteSelect).getRobots();
-					Iterator<Robot> valueRobots=robs.iterator();
-					Robot rob=null;
-					for(int i=0;i<robotSelect+1;i++) {
-						rob=valueRobots.next();
-					}
-					HashSet<Action> acts=rob.getAction();
-					Iterator<Action> valueAction=acts.iterator();
-					Action act=null;
-					for(int i=0;i<tableAction.getSelectedRow()+1;i++) {
-						act=valueAction.next();
-					}
-					ActionToDo actiontodo=new ActionToDo(rob.getName(), act.getNom(), Long.parseLong(txtTime.getText()));
-					scenario.addAction(actiontodo);
-					modeleScenario.addAction(actiontodo);
-					canvasSimulation.repaint();
-				}
-			}
-
-		});
 	}
 }
