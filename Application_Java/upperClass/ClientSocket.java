@@ -4,8 +4,11 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.time.ZonedDateTime;
 
 import org.json.*;
+
+import graphique.Frame;
 
 public class ClientSocket {
 	Socket soc;
@@ -45,16 +48,19 @@ public class ClientSocket {
 			outToServer.flush();
 
 			this.open = true;
+			
+			Syst.getThreadReception().start();
+			Frame.getLogger().ajouterLigne(ZonedDateTime.now()+" :  conexion au serveur réussie\n");
 		} catch (Exception e) {
-			e.printStackTrace();
 			System.err.println("Erreur de connexion");
-			// rajouter une popup d'erreur
+			Frame.getLogger().ajouterLigne(ZonedDateTime.now()+" :  conexion au serveur échouée\n");
 		}
 	} 
 	
 	public void disconnect() {
 		try {
 			soc.close();
+			Syst.getThreadReception().fermer();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -89,21 +95,23 @@ public class ClientSocket {
 			outToServer.write(b,0,msg.length());
 			//this.outStreamToServer.flush();
 			outToServer.flush();
-			
+			Frame.getLogger().ajouterLigne(ZonedDateTime.now() + " :  message envoyé : " + msg + "\n" );
 		} catch (IOException e) {
-			e.printStackTrace();
+			Frame.getLogger().ajouterLigne(ZonedDateTime.now() + " :  échec d'envoie d'un message\n" );
+			System.err.println("echec d'envoie");
 		}
 	}
 	
 	public String reciev(){
-
 		try{
 			String sentence = inFromServer.readLine();
+			Frame.getLogger().ajouterLigne(ZonedDateTime.now() + " :  message reçu : " + sentence + "\n" );
 			return sentence;
 		}
 		catch(Exception e){
-			e.printStackTrace();
-			return "error";
+			this.disconnect();
+			Frame.getLogger().ajouterLigne(ZonedDateTime.now() + " :  une erreur est survenue vous avez ete deconnecte\n" );
+			return "error recep";
 		}
 	}
 	
@@ -126,6 +134,7 @@ public class ClientSocket {
 		if (this.open) {
 			this.disconnect();
 		}
+		Frame.getLogger().ajouterLigne(ZonedDateTime.now() + " :  ip serveur modifié à : " + this.ip + "\n" );
 	}
 
 	public void setPort(int port) throws Exception {
@@ -133,6 +142,6 @@ public class ClientSocket {
 		if(this.open) {
 			this.disconnect();
 		}
-
+		Frame.getLogger().ajouterLigne(ZonedDateTime.now() + " :  port serveur modifié à : " + this.port + "\n" );
 	}
 }
