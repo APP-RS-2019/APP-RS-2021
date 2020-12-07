@@ -2,6 +2,7 @@ package robot;
 import java.io.Serializable;
 import action.Action;
 import upperClass.ClientSocket;
+import upperClass.Syst;
 
 
 public class Pepper extends Robot implements Serializable{
@@ -14,15 +15,9 @@ public class Pepper extends Robot implements Serializable{
 		super( idRobot,  name,  posx,  posy, angle);
 	}
 
-	@Override
 	public void doAction(Action a) {
-		ClientSocket server = null;
-		try {
-			server = new ClientSocket("193.48.125.71",80,"Pepper");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.err.println("Erreur de connexion au serveur");
-		}
+		ClientSocket server = Syst.getClientsocket();
+
 		switch(a.getNom()){
 		case "elephant":
 			server.sendOrder(this.name,"elephant");
