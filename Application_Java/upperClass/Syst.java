@@ -18,10 +18,12 @@ public class Syst implements Serializable {
 	
 	private static ArrayList<Fleet> fleets;
 	private static ClientSocket clientsocket;
+	private static ThreadReception thrd_rcp;
 	
 	public Syst() {
 		Syst.fleets = new ArrayList<Fleet> ();
-		Syst.clientsocket = new ClientSocket("25.100.142.23",1933,"Application");
+		Syst.clientsocket = new ClientSocket("192.168.56.1",1933,"Application");
+		Syst.thrd_rcp=new ThreadReception(Syst.clientsocket);
 	}
 
 	public static ArrayList<Fleet> getFleets() {
@@ -44,6 +46,10 @@ public class Syst implements Serializable {
 		return serialVersionUID;
 	}
 	
+	public static ThreadReception getThreadReception() {
+		return thrd_rcp;
+	}
+	
 	public void addFleet(Fleet fleet) {
 		this.fleets.add(fleet);
 	}
@@ -56,14 +62,14 @@ public class Syst implements Serializable {
 		return fleets.size();
 	}
 	
-	public void save() throws IOException{
+	public static void save() throws IOException{
 		String userHome = System.getProperty("user.home");
 		File fichier =  new File(userHome+"/Desktop/APP/save/save.txt");
-
+		
 		// ouverture d'un flux sur un fichier
 		ObjectOutputStream oos =  new ObjectOutputStream(new FileOutputStream(fichier)) ;
 
-		// sérialization de l'objet
+		// sÃ©rialization de l'objet
 		oos.writeObject(fleets);
 
 		oos.close();
@@ -75,7 +81,7 @@ public class Syst implements Serializable {
 		// ouverture d'un flux sur un fichier
 		ObjectOutputStream oos =  new ObjectOutputStream(new FileOutputStream(fichier)) ;
 
-		// sérialization de l'objet
+		// sÃ©rialization de l'objet
 		oos.writeObject(fleets);
 
 		oos.close();
@@ -88,7 +94,7 @@ public class Syst implements Serializable {
 
 		ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(fichier)) ;
 
-		// désérialization de l'objet
+		// dÃ©sÃ©rialization de l'objet
 		ArrayList<Fleet> savedfleets = (ArrayList<Fleet>) ois.readObject();
 		this.fleets = savedfleets;
 		ois.close();
@@ -100,7 +106,7 @@ public class Syst implements Serializable {
 
 		ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(fichier)) ;
 
-		// désérialization de l'objet
+		// dÃ©sÃ©rialization de l'objet
 		ArrayList<Fleet> savedfleets = (ArrayList<Fleet>) ois.readObject();
 		this.fleets = savedfleets;
 		ois.close();
