@@ -11,6 +11,7 @@ public class InitData {
 	
 	public static void actived() throws AWTException, IOException {
 		
+		//Actions connues de Pepper
 		Action A1 = new Action("1","LoudSpeakerLeft","");
 		Action A2 = new Action("2","LoudSpeakerRight","");
 		Action A3 = new Action("3","FaceLedRight0","");
@@ -88,7 +89,12 @@ public class InitData {
 		Action A75 = new Action("75","sitDown","");
 		Action A76 = new Action("76","standUp","");
 		
-		
+		//Actions connues de Robotino
+		Action A77 = new Action("1","avance","");
+		Action A78 = new Action("2","avance-1","Avance le robot de 1m");
+		Action A79 = new Action("3","recule","");
+		Action A80 = new Action("4","stop","arrete l'execution d'une tache");
+		Action A81 = new Action("5","tourne","");
 		
 		Pepper pepper = new Pepper("1", "Pepper", 0.0, 0.0, 0.0);
 		pepper.addAction(A1);
@@ -171,6 +177,11 @@ public class InitData {
 		Nao nao = new Nao("2", "Nao");
 		Pekee1R peekee1R = new Pekee1R("3","Peekee1R");
 		Robotino robotino = new Robotino("4","Robotino");
+		robotino.addAction(A77);
+		robotino.addAction(A78);
+		robotino.addAction(A79);
+		robotino.addAction(A80);
+		robotino.addAction(A81);
 		
 		Fleet fleet = new Fleet("1");
 		fleet.setName("Flotte de donnÃ©es d'initialisations");
