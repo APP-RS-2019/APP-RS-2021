@@ -65,4 +65,40 @@ public class ActionToDo extends Thread{
 	public void activeRuning() {
 		this.running=true;
 	}
+	
+	/*public void run() {
+		while(true) {
+			try {
+				if(this.checkActivation()) {
+					System.err.println("passage");
+					try {
+						Thread.sleep(this.getTime()*1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					if(Scenario.connexion) {
+						System.out.println("Le robot : " + this.nameRobot + " effectue l'action " + this.nameAction + " au bout de " + this.time + " s");
+						// Action non simulÃ©e
+					}
+					if(!Scenario.connexion) {
+						System.out.println("Le robot : " + this.nameRobot + " effectue l'action simulÃ©e " + this.nameAction + " au bout de " + this.time + " s");
+						// Action simulÃ©e
+					}
+				}
+				
+				try {
+					Thread.sleep(1000*(Scenario.maxT-this.getTime()+1));
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}*/
 }
