@@ -122,9 +122,7 @@ public class OngletGestion extends JPanel implements AL{
 		btnSupprimerCapteur.addActionListener(this);
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getSource()==btnAjouterFlotte) {
 			new Dialog_AjoutFlotte(modeleFlotte);
 		}
@@ -135,11 +133,11 @@ public class OngletGestion extends JPanel implements AL{
 					modeleFlotte.removeFlotte(tableFlotteExistantes.getSelectedRow());
 				}
 				else {
-					new ErrorDialog("La flotte selectionné est encore active");
+					new ErrorDialog("La flotte selectionnÃ© est encore active");
 				}
 			}
 			else {
-				new ErrorDialog("Aucune ligne selecionnée");
+				new ErrorDialog("Aucune ligne selecionnÃ©e");
 			}
 		}
 		if(e.getSource()==buttonFleetToRobots) {
@@ -156,7 +154,7 @@ public class OngletGestion extends JPanel implements AL{
 		}
 		if(e.getSource()==btnSupprimerRobot) {
 
-			if (tableRobotsFlotte.getSelectedRow()>-1) {//verifier l'exclu pour avoir une ligne selectionnée
+			if (tableRobotsFlotte.getSelectedRow()>-1) {//verifier l'exclu pour avoir une ligne selectionnÃ©e
 				HashSet<Robot> robs=Syst.getFleets().get(flotteSelect).getRobots();
 				Iterator<Robot> value=robs.iterator();
 				Robot rob=null;
@@ -171,7 +169,7 @@ public class OngletGestion extends JPanel implements AL{
 				modeleRobot.removeRobot(tableRobotsFlotte.getSelectedRow());
 			}
 			else {
-				new ErrorDialog("Aucune ligne selecionnée");
+				new ErrorDialog("Aucune ligne selecionnÃ©e");
 			}
 		}
 		if(e.getSource()==buttonRobotToSensors) {
@@ -213,10 +211,10 @@ public class OngletGestion extends JPanel implements AL{
 				}
 				rob.getAction().remove(act);
 				modeleAction.removeAction(tableAction.getSelectedRow());
-				modeleRobot.initTable(Syst.getFleets().get(flotteSelect).getRobots());//peut etre simplifiable en rajoutant une méthode actualise() dans le modele dynamique
+				modeleRobot.initTable(Syst.getFleets().get(flotteSelect).getRobots());//peut etre simplifiable en rajoutant une mÃ©thode actualise() dans le modele dynamique
 			}
 			else {
-				new ErrorDialog("Aucune ligne selecionnée");
+				new ErrorDialog("Aucune ligne selecionnÃ©e");
 			}
 		}
 		if(e.getSource()==buttonAjouterCapteur) {
@@ -238,10 +236,10 @@ public class OngletGestion extends JPanel implements AL{
 				}
 				rob.getSensor().remove(capt);
 				modeleCapteur.removeCapteur(tableCapteur.getSelectedRow());
-				modeleRobot.initTable(Syst.getFleets().get(flotteSelect).getRobots());//peut etre simplifiable en rajoutant une méthode actualise() dans le modele dynamique
+				modeleRobot.initTable(Syst.getFleets().get(flotteSelect).getRobots());//peut etre simplifiable en rajoutant une mÃ©thode actualise() dans le modele dynamique
 			}
 			else {
-				new ErrorDialog("Aucune ligne selecionnée");
+				new ErrorDialog("Aucune ligne selecionnÃ©e");
 			}
 		}
 	}
