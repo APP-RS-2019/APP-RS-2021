@@ -11,7 +11,6 @@ public class Nao extends Robot{
 		super( idRobot,  name,  posx,  posy, angle);
 	}
 
-	@Override
 	public void doAction(Action a) {
 		switch(a.getNom()){
 		case "elephant":
