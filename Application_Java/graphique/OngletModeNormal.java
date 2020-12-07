@@ -30,32 +30,30 @@ public class OngletModeNormal extends JPanel implements AL{
 	private ModeleDynamiqueCapteur modeleCapteur;
 	private int flotteSelect;
 	private int robotSelect;
-	
+
 	private JButton buttonFleetToRobots = new JButton("=>");
 	private JButton buttonRobotToSensors = new JButton("=>");
+
+	private JButton btnExecuter_1 = new JButton("Excecute");
 
 	public OngletModeNormal() {
 		setLayout(null);
 
-		//tests de flotte à afficher
+		//tests de flotte Ã  afficher
 
 		this.modeleFlotte=new ModeleDynamiqueFlotte(Syst.getFleets());
 		this.modeleRobot=new ModeleDynamiqueRobot();
 		this.modeleAction=new ModeleDynamiqueAction();
 		this.modeleCapteur=new ModeleDynamiqueCapteur();
 		this.flotteSelect=0; this.robotSelect=0;
-		
+
 		buttonFleetToRobots.setBounds(615, 395, 50, 25);
 		add(buttonFleetToRobots);
-		
+
 		buttonRobotToSensors.setBounds(1290, 395, 50, 25);
 		add(buttonRobotToSensors);
 
-		JButton btnExecuter_1 = new JButton("Excecute");
-		btnExecuter_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		btnExecuter_1.addActionListener(this);
 		btnExecuter_1.setBounds(1861, 420, 41, 25);
 		add(btnExecuter_1);
 
@@ -102,8 +100,8 @@ public class OngletModeNormal extends JPanel implements AL{
 			//rajouter un if selection != 0 qui ne beug pas!!
 			modeleRobot.removeAll();
 			HashSet<Robot> robs=Syst.getFleets().get(tableFlotteExistantes.getSelectedRow()).getRobots();
-			
-			
+
+
 			flotteSelect=tableFlotteExistantes.getSelectedRow();
 			modeleRobot.initTable(robs);
 		}
@@ -124,6 +122,26 @@ public class OngletModeNormal extends JPanel implements AL{
 			}
 			modeleAction.initTable(acts);
 			modeleCapteur.initTable(sens);
+		}
+		if(e.getSource()==btnExecuter_1) {
+			flotteSelect=tableFlotteExistantes.getSelectedRow();
+			robotSelect=tableRobotsFlotte.getSelectedRow();
+
+			HashSet<Robot> robs=Syst.getFleets().get(flotteSelect).getRobots();
+
+			Iterator<Robot> valueRobots=robs.iterator();
+			Robot rob=null;
+			for(int i=0;i<robotSelect+1;i++) {
+				rob=valueRobots.next();
+			}
+			HashSet<Action> acts=rob.getAction();
+			Iterator<Action> valueAction=acts.iterator();
+			Action act=null;
+			for(int i=0;i<tableAction.getSelectedRow()+1;i++) {
+				act=valueAction.next();
+			}
+
+			Syst.getClientsocket().sendOrder(rob.getName(),act.getNom());
 		}
 	}
 }
