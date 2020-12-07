@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
+import java.time.ZonedDateTime;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -127,10 +129,9 @@ public class Dialog_PrefenceServeur extends JDialog implements AL{
 					Syst.getClientsocket().disconnect();
 					Syst.getClientsocket().connect("");
 					if(Syst.getClientsocket().isOpen()) {
-						btnTestConnexion.setBackground(Color.green);
+						btnTestConnexion.setBackground(Color.green);	
 					}
 				} catch (Exception e1) {
-					e1.printStackTrace();
 				}
 			}
 			else if (Syst.getClientsocket().isOpen()==false) {
@@ -141,14 +142,13 @@ public class Dialog_PrefenceServeur extends JDialog implements AL{
 					}
 				}
 				catch (Exception e2) {
-					e2.printStackTrace();
 				}
 			}
 		}
 		if(e.getSource()==okButton) {
 			Frame.actualize();
 			dispose();
-			
+
 		}
 	}
 }
