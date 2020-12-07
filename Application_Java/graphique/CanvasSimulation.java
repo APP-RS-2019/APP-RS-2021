@@ -1,6 +1,7 @@
 package graphique;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 import action.ActionToDo;
@@ -50,9 +51,8 @@ public class CanvasSimulation extends Canvas{
 		this.repaint();
 	}
 	public void paintAction(Graphics g) {
-		HashSet<ActionToDo> act=scenario.getData();
+		ArrayList<ActionToDo> act=scenario.getData();
 		for (ActionToDo action : act) {
-			//switch(action.getNameRobot()) {
 			if(action.getNameRobot().equals("Pepper")){
 				if(trans&&(this.time>(int) (action.getTime()*20)+10)&&(this.time<(int) (action.getTime()*20)+15)&&action.getRunning()==false){
 					Syst.getClientsocket().sendOrder("Pepper", action.getNameAction());
@@ -137,7 +137,7 @@ public class CanvasSimulation extends Canvas{
 		this.trans=false;
 		Thread thread = new Thread(){
 			public void run(){try {
-				time=time+5; //on remet l'affichage en corrélation avec le temps de départ
+				time=time+5; //on remet l'affichage en corrÃ©lation avec le temps de dÃ©part
 				int i=0;
 				while(i<1810-3) {
 					CanvasSimulation.getInstance().increaseTime();
@@ -156,7 +156,7 @@ public class CanvasSimulation extends Canvas{
 		this.trans=true;
 		Thread thread = new Thread(){
 			public void run(){try {
-				time=time+5; //on remet l'affichage en corrélation avec le temps de départ
+				time=time+5; //on remet l'affichage en corrÃ©lation avec le temps de dÃ©part
 				int i=0;
 				while(i<1810-3) {
 					CanvasSimulation.getInstance().increaseTime();
@@ -169,6 +169,9 @@ public class CanvasSimulation extends Canvas{
 			}
 		};
 		thread.start();	
+	}
+	public void setTime(int t) {
+		this.time=t;
 	}
 }
 
