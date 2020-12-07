@@ -96,7 +96,7 @@ public class Dialog_AjoutCapteur extends JDialog implements AL{
 			}
 			rob.addSensor(sensor);
 			modeleCapteur.addCapteur(sensor);
-			modeleRobot.initTable(Syst.getFleets().get(flotteSelect).getRobots());//peut etre simplifiable en rajoutant une méthode actualise() dans le modele dynamique
+			modeleRobot.initTable(Syst.getFleets().get(flotteSelect).getRobots());//peut etre simplifiable en rajoutant une mÃ©thode actualise() dans le modele dynamique
 			dispose();
 		}
 		if(e.getSource()==cancelButton) {
