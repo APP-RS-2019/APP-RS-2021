@@ -12,7 +12,7 @@ public class ModeleDynamiqueScenario extends AbstractTableModel{
 	private static final long serialVersionUID = 1L;
 	private final String[] entete = {"Robot", "Action", "Time"};
 	private ArrayList<ActionToDo> actions;
-	
+
 	public ModeleDynamiqueScenario() {
 		super();
 		this.actions=new ArrayList<ActionToDo>();
@@ -53,4 +53,13 @@ public class ModeleDynamiqueScenario extends AbstractTableModel{
 			fireTableRowsInserted(actions.size()-1,actions.size()-1);
 		}		
 	}
+	public void removeAll() {
+		int size=actions.size();
+		for(int i=0;i<size;i++) {
+			actions.remove(0);
+			fireTableRowsDeleted(0, 0);
+		}
+	}
+
 }
+
