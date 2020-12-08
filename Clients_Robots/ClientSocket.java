@@ -134,7 +134,6 @@ public class ClientSocket {
 		if (this.open) {
 			this.disconnect();
 		}
-		Frame.getLogger().ajouterLigne(ZonedDateTime.now() + " :  ip serveur modifié à : " + this.ip + "\n" );
 	}
 
 	public void setPort(int port) throws Exception {
@@ -142,6 +141,5 @@ public class ClientSocket {
 		if(this.open) {
 			this.disconnect();
 		}
-		Frame.getLogger().ajouterLigne(ZonedDateTime.now() + " :  port serveur modifié à : " + this.port + "\n" );
 	}
 }
