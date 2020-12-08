@@ -4,11 +4,9 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.time.ZonedDateTime;
 
 import org.json.*;
 
-import graphique.Frame;
 
 public class ClientSocket {
 	Socket soc;
@@ -50,10 +48,8 @@ public class ClientSocket {
 			this.open = true;
 			
 			Syst.getThreadReception().start();
-			Frame.getLogger().ajouterLigne(ZonedDateTime.now()+" :  conexion au serveur réussie\n");
 		} catch (Exception e) {
 			System.err.println("Erreur de connexion");
-			Frame.getLogger().ajouterLigne(ZonedDateTime.now()+" :  conexion au serveur échouée\n");
 		}
 	} 
 	
@@ -95,9 +91,7 @@ public class ClientSocket {
 			outToServer.write(b,0,msg.length());
 			//this.outStreamToServer.flush();
 			outToServer.flush();
-			Frame.getLogger().ajouterLigne(ZonedDateTime.now() + " :  message envoyé : " + msg + "\n" );
 		} catch (IOException e) {
-			Frame.getLogger().ajouterLigne(ZonedDateTime.now() + " :  échec d'envoie d'un message\n" );
 			System.err.println("echec d'envoie");
 		}
 	}
@@ -105,12 +99,10 @@ public class ClientSocket {
 	public String reciev(){
 		try{
 			String sentence = inFromServer.readLine();
-			Frame.getLogger().ajouterLigne(ZonedDateTime.now() + " :  message reçu : " + sentence + "\n" );
 			return sentence;
 		}
 		catch(Exception e){
 			this.disconnect();
-			Frame.getLogger().ajouterLigne(ZonedDateTime.now() + " :  une erreur est survenue vous avez ete deconnecte\n" );
 			return "error recep";
 		}
 	}
